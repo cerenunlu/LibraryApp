@@ -1,0 +1,226 @@
+﻿@inherits LayoutComponentBase
+@*@inject CustomStateProvider customStateProvider*@
+@inject NavigationManager navigationManager
+
+<div class="page">
+    <div class="sidebar">
+
+        <div id="sidebar" class="sidebar sidebar-fixed expandable sidebar-color sidebar-darkblue sidebar-top sidebar-backdrop has-open" data-swipe="true" data-dismiss="true">
+            <div class="sidebar-inner">
+
+                <div class="flex-grow-1 ace-scroll" style="background-image: url('../assets/image/unnamed.jpg');" ace-scroll="">
+
+                    <div class="sidebar-section sidebar-header my-2">
+
+                        <div class="sidebar-section-item">
+                            <i class="fadeinable fa fa-search text-orange-l2 mr-n1"></i>
+
+                            <div class="fadeable d-inline-flex align-items-center ml-3 ml-lg-0">
+                                <i class="fa fa-search mr-n3 text-orange-l2"></i>
+                                <input type="text" class="sidebar-search-input pl-4 pr-3 mr-n2" maxlength="60" placeholder="Search ..." aria-label="Search" aria-describedby="basic-search">
+                                <a href="#"><i class="fa fa-microphone text-white-tp3 ml-n1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="nav flex-column has-active-border active-on-right" role="navigation" aria-label="Main">
+
+
+                        <li class="nav-item-caption">
+                            <span class="fadeable pl-3">MAIN</span>
+                            <span class="fadeinable mt-n2 text-125">…</span>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a href="/Home" class="nav-link">
+                                <i class="nav-icon fa fa-tachometer-alt"></i>
+                                <span class="nav-text fadeable">
+                                    <span>Dashboard</span>
+                                </span>
+
+
+                            </a>
+
+                            <b class="sub-arrow"></b>
+
+
+
+
+
+                        </li>
+
+
+                        <li class="nav-item active open">
+
+                            <a href="/BookList " class="nav-link dropdown-toggle">
+                                <i class="nav-icon fa fa-book"></i>
+                                <span class="nav-text fadeable">
+                                    <span>Book List</span>
+                                </span>
+
+                            </a>
+
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a href="/MyBooks" class="nav-link dropdown-toggle">
+                                <i class="nav-icon fa fa-book-reader"></i>
+                                <span class="nav-text fadeable">
+                                    <span>My Books</span>
+                                </span>
+
+                            </a>
+
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a href="/Authors" class="nav-link dropdown-toggle">
+                                <i class="nav-icon fa fa-pencil-alt"></i>
+                                <span class="nav-text fadeable">
+                                    <span>Authors</span>
+                                </span>
+
+                            </a>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a href="/settings" class="nav-link dropdown-toggle">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <span class="nav-text fadeable">
+                                    <span>Settings</span>
+                                </span>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div><!-- .sidebar scroll -->
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            <nav class="navbar navbar-expand-lg navbar-fixed navbar-blue">
+                <div class="navbar-inner">
+
+                    <div class="navbar-intro justify-content-xl-between">
+
+                        <a class="navbar-brand text-white" href="#">
+
+                            Library
+                        </a><!-- .navbar-brand -->
+
+
+                    </div><!-- .navbar-intro -->
+
+
+                    <div class="navbar-content">
+
+                        <button class="navbar-toggler py-2" type="button" data-toggle="collapse" data-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle navbar search">
+                            <i class="fa fa-search text-white text-90 py-1"></i>
+                        </button>
+
+                        <div class="navbar-content-section collapse navbar-collapse navbar-backdrop" id="navbarSearch">
+                            <div class="d-flex align-items-center ml-lg-1 pos-rel">
+                                <input type="text" class="navbar-search-input pr-1 pl-425 h-auto py-25 border-0 bgc-white-tp9 radius-2 text-dark-tp3 autofocus mr-0" placeholder="Search for something ..." aria-label="Search">
+                                <i class="fa fa-search text-white d-none d-lg-block position-lc ml-4 text-95"></i>
+                            </div>
+                        </div>
+
+                    </div><!-- .navbar-content -->
+                    <!-- mobile #navbarMenu toggler button -->
+
+                    <div class="navbar-menu collapse navbar-collapse navbar-backdrop" id="navbarMenu">
+
+                        <div class="navbar-nav">
+                            <ul class="nav border-0 has-active-border">
+
+
+
+                                <li class="nav-item dropdown order-first order-lg-last dropdown-hover">
+                                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <span class="d-inline-block d-lg-none d-xl-inline-block">
+                                            <span class="text-90" id="id-user-welcome">Welcome,</span>
+                                            <span class="nav-user-name">Jason</span>
+                                        </span>
+
+                                        <i class="caret fa fa-angle-down d-none d-xl-block"></i>
+                                        <i class="caret fa fa-angle-left d-block d-lg-none"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-caret dropdown-menu-right dropdown-animated brc-primary-m3">
+                                        <div class="d-none d-lg-block d-xl-none">
+                                            <div class="dropdown-header">
+                                                Welcome, Jason
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                        </div>
+
+                                        <a class="dropdown-item btn btn-outline-grey btn-h-lighter-primary btn-a-lighter-primary" href="html/page-profile.html">
+                                            <i class="fa fa-user text-primary-m1 text-105 mr-1"></i>
+                                            Profile
+                                        </a>
+
+                                        <a class="dropdown-item btn btn-outline-grey btn-h-lighter-success btn-a-lighter-success" href="#" data-toggle="modal" data-target="#id-ace-settings-modal">
+                                            <i class="fa fa-cog text-success-m1 text-105 mr-1"></i>
+                                            Settings
+                                        </a>
+
+                                        <div class="dropdown-divider brc-primary-l2"></div>
+
+                                        <a class="dropdown-item btn btn-outline-grey btn-h-lighter-secondary btn-a-lighter-secondary" href="html/page-login.html">
+                                            <i class="fa fa-power-off text-warning-d1 text-105 mr-1"></i>
+                                            Logout
+                                        </a>
+                                    </div>
+                                </li><!-- .nav-item:last -->
+
+                            </ul><!-- .navbar-nav menu -->
+                        </div><!-- .navbar-nav -->
+
+                    </div><!-- .navbar-menu.navbar-collapse -->
+
+                </div>
+            </nav>
+        </div>
+
+        <div class="content px-45">
+            @Body
+        </div>
+    </div>
+   
+</div>
+
+
+@code {
+
+
+    //[CascadingParameter]
+    //Task<AuthenticationState> AuthenticationState { get; set; }
+
+    //protected override async Task OnParametersSetAsync()
+    //{
+    //    if (!(await AuthenticationState).User.Identity.IsAuthenticated)
+    //    {
+    //        navigationManager.NavigateTo("/Login");
+    //    }
+
+    //}
+}

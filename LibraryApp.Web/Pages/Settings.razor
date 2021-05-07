@@ -1,0 +1,245 @@
+﻿@page "/Settings"
+@layout MainLayout
+@inject IJSRuntime js
+@inject HttpClient Http
+@inject NavigationManager navigationaManager
+@using LibraryApp.DTOs
+
+
+<button type="button" class="btn btn-md btn-success my-1 mt-5" data-toggle="modal" data-target="#modalWithScroll2" @onclick="OpenUserWindow">
+    USERS
+</button>
+<button type="button" class="btn btn-md btn-success my-1 mt-5" data-toggle="modal" data-target="#modalWithScroll2">
+    My Account
+</button>
+@if (OpenWindow)
+{
+    <div class="modal fade show" id="modalWithScroll2" tabindex="-1" role="dialog" style="padding-right: 16px; display: block;" aria-modal="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title text-blue">User List</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="OpenPanel">
+                        <span aria-hidden="true">Add User</span>
+                    </button>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="CloseModal">
+                        <span aria-hidden="true">×</span>
+
+                    </button>
+                </div>
+
+                <div class="modal-body ace-scrollbar">
+                    @foreach (var item in user)
+                    {
+                        if (PageLoad)
+                        {
+                            <div class="col-6 col-sm-6 mt-3 mt-sm-0 cards-container" id="card-container-4">
+                                <div class="card" id="card-4" draggable="false">
+                                    <div class="card-header card-header-sm">
+                                        <h5 class="card-title text-100">
+                                            @item.UserName
+                                        </h5>
+
+                                        <div class="card-toolbar">
+                                            <button href="#" data-action="close" class="card-toolbar-btn text-danger-m2" draggable="false" @onclick="(()=>DeleteUser(item.ID))"><i class="fa fa-times">Delete</i></button>
+                                            <button href="#" data-action="close" class="card-toolbar-btn text-danger-m2" draggable="false" @onclick="(()=>UpdateUser(item.ID))"><i class="fa fa-times">Edit</i></button>
+                                        </div>
+                                    </div><!-- /.card-header -->
+
+                                    <div class="card-body bg-white p-0">
+                                        <div class="p-3">
+                                            <p class="alert alert-info mb-1">
+                                                Name: @item.Name
+                                                Surname: @item.Surname
+                                            </p>
+
+                                        </div>
+                                    </div><!-- /.card-body -->
+                                </div>
+                            </div>
+                        }
+
+                        @if (UpdatePanel)
+                        {
+                            <div class="col-6 col-sm-6 mt-3 mt-sm-0 cards-container" id="card-container-4">
+                                <div class="card" id="card-4" style="width:200px;" draggable="false">
+                                    <div class="card-header card-header-sm">
+                                        Username:
+                                        <p class="text-secondary-m2 text-105">
+                                            <input type="text" class="form-control form-control-lg pr-4 shadow-none" placeholder="@item.UserName" id="id-login-username" autocomplete="off" @bind-value="newUser.UserName">
+                                        </p>
+
+                                    </div><!-- /.card-header -->
+
+                                    <div class="card-body bg-white p-0">
+                                        <div class="p-3">
+                                            Name:
+                                            <p class="text-secondary-m2 text-105">
+                                                <input type="text" class="form-control form-control-lg pr-4 shadow-none" placeholder="@item.Name" id="id-login-username" autocomplete="off" @bind-value="newUser.Name">
+                                            </p>
+                                            Surname:
+                                            <p class="text-secondary-m2 text-105">
+                                                <input type="text" class="form-control form-control-lg pr-4 shadow-none" placeholder="@item.Surname" id="id-login-username" autocomplete="off" @bind-value="newUser.Surname">
+                                            </p>
+                                            Password:
+                                            <p class="text-secondary-m2 text-105">
+                                                <input type="password" class="form-control form-control-lg pr-4 shadow-none" placeholder="@item.Password" id="id-login-username" autocomplete="off" @bind-value="newUser.Password">
+                                            </p>
+                                            Confirm Password:
+                                            <p class="text-secondary-m2 text-105">
+                                                <input type="password" class="form-control form-control-lg pr-4 shadow-none" id="id-login-username" placeholder="@item.ConfirmPassword" autocomplete="off" @bind-value="newUser.ConfirmPassword">
+                                            </p>
+
+                                        </div>
+                                    </div><!-- /.card-body -->
+                                    <footer class="row">
+                                        <button class="btn btn-sm btn-success ml-15" @onclick="UpdateUserInfo">Save</button>
+                                        <button class="btn btn-sm btn-warning ml-25" @onclick="Cancel">Cancel</button>
+                                    </footer>
+
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <div class="modal-footer">
+
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
+                @if (OpenAddUserPanel)
+                {
+                    <div class="col-6 col-sm-6 mt-3 mt-sm-0 cards-container" id="card-container-4">
+                        <div class="card" id="card-4" draggable="false">
+                            <div class="card-header card-header-sm">
+                                Username:
+                                <p class="text-secondary-m2 text-105">
+                                    <input type="text" class="form-control form-control-lg pr-4 shadow-none" id="id-login-username" autocomplete="off" @bind-value="newUser.UserName">
+                                </p>
+
+                            </div><!-- /.card-header -->
+
+                            <div class="card-body bg-white p-0">
+                                <div class="p-3">
+                                    Name:
+                                    <p class="text-secondary-m2 text-105">
+                                        <input type="text" class="form-control form-control-lg pr-4 shadow-none" id="id-login-username" autocomplete="off" @bind-value="newUser.Name">
+                                    </p>
+                                    Surname:
+                                    <p class="text-secondary-m2 text-105">
+                                        <input type="text" class="form-control form-control-lg pr-4 shadow-none" id="id-login-username" autocomplete="off" @bind-value="newUser.Surname">
+                                    </p>
+                                    Password:
+                                    <p class="text-secondary-m2 text-105">
+                                        <input type="password" class="form-control form-control-lg pr-4 shadow-none" id="id-login-username" autocomplete="off" @bind-value="newUser.Password">
+                                    </p>
+                                    Confirm Password:
+                                    <p class="text-secondary-m2 text-105">
+                                        <input type="text" class="form-control form-control-lg pr-4 shadow-none" id="id-login-username" autocomplete="off" @bind-value="newUser.ConfirmPassword">
+                                    </p>
+
+                                </div>
+                            </div><!-- /.card-body -->
+                            <footer class="row">
+                                <button class="btn btn-sm btn-success ml-15" @onclick="CreateUser">Save</button>
+                                <button class="btn btn-sm btn-warning ml-25" @onclick="Cancel">Cancel</button>
+                            </footer>
+
+                        </div>
+                    </div>
+                }
+
+               
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+@code {
+    bool OpenWindow = false;
+    bool OpenAddUserPanel = false;
+    bool UpdatePanel = false;
+    bool PageLoad = false;
+    List<UserDto> user = new List<UserDto>();
+    UserDto newUser = new UserDto();
+    int userID;
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        await GetUser();
+        PageLoad = true;
+
+    }
+    public async Task GetUser()
+    {
+        var userList = await Http.GetFromJsonAsync<ApiResponseDto<List<UserDto>>>("User/GetUser");
+        if (userList.IsSucces)
+        {
+            user = userList.Data;
+        }
+    }
+
+    void OpenUserWindow()
+    {
+        OpenWindow = true;
+    }
+    void CloseModal()
+    {
+        OpenWindow = false;
+    }
+
+    public async Task CreateUser()
+    {
+        if (newUser.UserName == null || newUser.Name == null || newUser.Surname == null || newUser.Password == null)
+        {
+            navigationaManager.NavigateTo("/Register");
+        }
+        else
+        {
+            var responseRgs = await Http.PostAsJsonAsync("User/Register", newUser);
+
+
+            navigationaManager.NavigateTo("/Home");
+
+
+        }
+    }
+    void OpenPanel()
+    {
+        OpenAddUserPanel = true;
+
+    }
+    void Cancel()
+    {
+        OpenAddUserPanel = false;
+    }
+    public async Task DeleteUser(int ID)
+    {
+        var response = await Http.DeleteAsync("User/DeleteUser/" + ID);
+        if (response.IsSuccessStatusCode)
+        {
+            navigationaManager.NavigateTo("/Settings");
+        }
+    }
+    public async Task UpdateUser(int ID)
+    {
+        userID = ID;
+        PageLoad = false;
+        UpdatePanel = true;
+    }
+    public async Task UpdateUserInfo()
+    {
+        newUser.ID = userID;
+        var updateResponse = await Http.PutAsJsonAsync("User/UpdateUser", newUser);
+        if (updateResponse.IsSuccessStatusCode)
+        {
+            navigationaManager.NavigateTo("/Home");
+        }
+    }
+}

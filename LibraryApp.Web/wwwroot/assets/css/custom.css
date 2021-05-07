@@ -1,0 +1,247 @@
+﻿
+
+
+.esnekKutu {
+    height: 150px;
+    width: 100px;
+}
+
+#esnekKutu1 {
+    box-flex: 2;
+    -webkit-box-flex: 2;
+    -moz-box-flex: 2;
+    -ms-box-flex: 2;
+}
+
+#esnekKutu2 {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+}
+
+#esnekKutu3 {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+}
+
+[name="kapat"] {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
+}
+
+.pencere {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 270px;
+    height: 140px;
+    background-image: url(/assets/image/indir2.jpg);
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    z-index: -1;
+    padding: 10px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin: -150px 0 0 -200px;
+}
+
+.pencere1 {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 270px;
+    height: 140px;
+    background-image: url(/assets/image/indir2.jpg);
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    z-index: -1;
+    padding: 10px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin: -150px 0 0 -200px;
+}
+
+.pencere2 {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 270px;
+    height: 140px;
+    background-image: url(/assets/image/indir2.jpg);
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    z-index: -1;
+    padding: 10px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin: -150px 0 0 -200px;
+}
+
+.pencereac2 {
+    width: 1px;
+    height: 1px;
+    visibility: hidden;
+}
+
+.Pencereac {
+    width: 1px;
+    height: 1px;
+    visibility: hidden;
+}
+
+.Pencereac1 {
+    width: 1px;
+    height: 1px;
+    visibility: hidden;
+}
+
+.Pencereac:checked + .pencere {
+    top: 50%;
+    left: 50%;
+    display: block;
+    z-index: 9;
+    opacity: 1;
+}
+
+.Pencereac1:checked + .pencere1 {
+    top: 50%;
+    left: 50%;
+    display: block;
+    z-index: 9;
+    opacity: 1;
+}
+
+.pencereac2:checked + .pencere2 {
+    top: 50%;
+    left: 50%;
+    display: block;
+    z-index: 9;
+    opacity: 1;
+}
+
+.pano {
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
+}
+
+.Card {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 270px;
+    height: 140px;
+    box-shadow: 0 0 6px 2px rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    z-index: -1;
+    padding: 10px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin: -150px 0 0 -200px;
+}
+
+.Cardac {
+    width: 5px;
+    height: 5px;
+    visibility: hidden;
+}
+
+    .Cardac:checked + .Card {
+        top: 50%;
+        left: 50%;
+        display: block;
+        z-index: 9;
+        opacity: 1;
+    }
+
+
+.body-container {
+    background-image: linear-gradient(#6baace, #264783);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.carousel-item > div {
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* these make sure in mobile devices, tab panes are not the same height (for example 'forgot' pane is not as tall as 'signup' page) */
+@media (max-width: 767.98px) {
+    .tab-sliding .tab-pane:not(.active) {
+        max-height: 0 !important;
+    }
+
+    .tab-sliding .tab-pane.active {
+        min-height: 90vh;
+        max-height: none !important;
+    }
+}
+
+.conversation .media-body {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.conversation:nth-child(2n) .media > .d-flex {
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+
+.conversation:nth-child(2n) .media-body {
+    border-radius: 1.25rem 1.25rem 2px 1.25rem;
+}
+
+.conversation:nth-child(2n + 1) .media-body {
+    border-radius: 1.25rem 1.25rem 1.25rem 2px;
+}
+
+.conversation:nth-child(2n) .avatar {
+    margin-left: 0.5rem;
+}
+
+.conversation:nth-child(2n + 1) .avatar {
+    margin-right: 0.5rem;
+}
+
+
+.rtl .conversation:nth-child(2n) .media-body {
+    border-radius: 1.25rem 1.25rem 1.25rem 2px;
+}
+
+.rtl .conversation:nth-child(2n + 1) .media-body {
+    border-radius: 1.25rem 1.25rem 2px 1.25rem;
+}
+
+.rtl .conversation:nth-child(2n) .avatar {
+    margin-right: 0.5rem;
+}
+
+.rtl .conversation:nth-child(2n + 1) .avatar {
+    margin-left: 0.5rem;
+}
+
+
+.piechart-legends ul {
+    list-style: none;
+}
+
+.piechart-legends span {
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 0.625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    margin-right: 0.25rem;
+}
